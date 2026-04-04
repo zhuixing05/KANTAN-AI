@@ -1,0 +1,33 @@
+
+> kantan-ai@2026.4.1 predist:linux
+> npm run openclaw:runtime:linux-x64
+
+npm warn cli npm v11.12.1 does not support Node.js v18.19.1. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> kantan-ai@2026.4.1 openclaw:runtime:linux-x64
+> npm run openclaw:ensure && npm run openclaw:patch && node scripts/run-build-openclaw-runtime.cjs linux-x64 && node scripts/sync-openclaw-runtime-current.cjs linux-x64 && npm run openclaw:bundle && npm run openclaw:plugins && npm run openclaw:extensions:local && npm run openclaw:precompile && npm run openclaw:prune
+
+npm warn cli npm v11.12.1 does not support Node.js v18.19.1. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> kantan-ai@2026.4.1 openclaw:ensure
+> node scripts/ensure-openclaw-version.cjs
+
+[openclaw-ensure] Desired OpenClaw version: v2026.3.2
+[openclaw-ensure] OpenClaw source path: /home/deepin/openclaw
+[openclaw-ensure] Already at v2026.3.2, nothing to do.
+npm warn cli npm v11.12.1 does not support Node.js v18.19.1. This version of npm supports the following node versions: `^20.17.0 || >=22.9.0`. You can find the latest version at https://nodejs.org/.
+
+> kantan-ai@2026.4.1 openclaw:patch
+> node scripts/apply-openclaw-patches.cjs
+
+[apply-openclaw-patches] Applying patches for openclaw v2026.3.2 (8 file(s))
+[apply-openclaw-patches] Already applied: openclaw-cron-current-time-suffix.patch
+[apply-openclaw-patches] Already applied: openclaw-cron-delivery-inference.patch
+[apply-openclaw-patches] Already applied: openclaw-cron-isolated-session-key.patch
+[apply-openclaw-patches] Already applied: openclaw-cron-owner-fallback.patch
+[apply-openclaw-patches] Already applied: openclaw-cron-reminder-prompt.patch
+[apply-openclaw-patches] Already applied: openclaw-cron-tool-owner-only.patch
+[apply-openclaw-patches] Already applied: openclaw-gateway-entry.patch
+[apply-openclaw-patches] Already applied: openclaw-wecom-exec-deny.patch
+[apply-openclaw-patches] Done. Applied: 0, Skipped (already applied): 8
+Node 18.19.1 is too old. Require >= 22.12.0

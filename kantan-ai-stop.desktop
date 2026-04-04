@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KANTAN AI 一键关闭
+Comment=关闭所有 KANTAN AI 相关进程（桌面应用 + 后台网关）
+Exec=/home/deepin/Desktop/kantan-ai-stop.sh
+Icon=system-shutdown
+Terminal=true
+Type=Application
+Categories=Utility;
+StartupNotify=true
