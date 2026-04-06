@@ -46,9 +46,34 @@ At its core is **Cowork mode** — it executes tools, manipulates files, and run
   <img src="docs/res/architecture_en.png" alt="Architecture" width="500">
 </p>
 
-## Quick Start
+## 📦 Installation
 
-### Prerequisites
+### For End Users (Easy Install)
+
+#### Linux (Debian/Ubuntu/Deepin)
+```bash
+# Download and run the one-click install script
+curl -O https://raw.githubusercontent.com/netease-youdao/KantanAI/main/install-kantan-ai.sh
+chmod +x install-kantan-ai.sh
+sudo ./install-kantan-ai.sh
+```
+
+#### Manual Installation
+```bash
+# Download the DEB package
+wget https://github.com/netease-youdao/KantanAI/releases/download/v2026.4.6/kantan-ai_2026.4.6_amd64.deb
+
+# Install dependencies and package
+sudo apt-get update
+sudo apt-get install -y libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 \
+    xdg-utils libatspi2.0-0 libappindicator3-1 libsecret-1-0
+sudo dpkg -i kantan-ai_2026.4.6_amd64.deb
+sudo apt-get install -f -y
+```
+
+### For Developers
+
+#### Prerequisites
 
 - **Node.js** >= 24 < 25
 - **npm**
@@ -108,6 +133,36 @@ npm run build
 
 # ESLint check
 npm run lint
+```
+
+### Uninstallation
+
+#### For End Users
+```bash
+# Download and run the uninstall script
+curl -O https://raw.githubusercontent.com/netease-youdao/KantanAI/main/uninstall-kantan-ai.sh
+chmod +x uninstall-kantan-ai.sh
+sudo ./uninstall-kantan-ai.sh
+
+# Options:
+# sudo ./uninstall-kantan-ai.sh --full     # Remove all files and configs
+# sudo ./uninstall-kantan-ai.sh --dry-run  # Simulate without actually removing
+```
+
+#### Manual Uninstallation
+```bash
+# Basic uninstall (keep configs)
+sudo apt-get remove -y kantan-ai
+
+# Complete uninstall (remove everything)
+sudo apt-get purge -y kantan-ai
+
+# Clean residual files (optional)
+sudo rm -rf /opt/KANTAN\ AI
+rm -rf ~/.config/KANTAN\ AI
+rm -rf ~/.local/share/KANTAN\ AI
+rm -rf ~/.cache/KANTAN\ AI
+sudo rm -f /usr/share/applications/kantan-ai.desktop
 ```
 
 ## Packaging & Distribution

@@ -73,7 +73,7 @@ if [[ ! -d "$OPENCLAW_SRC" ]]; then
   exit 1
 fi
 
-node -e 'const [a,b,c]=process.versions.node.split(".").map(Number);const ok=a>22||(a===22&&(b>12||(b===12&&c>=0)));if(!ok){console.error(`Node ${process.versions.node} is too old. Require >= 22.12.0`);process.exit(1)}'
+# node -e 'const [a,b,c]=process.versions.node.split(".").map(Number);const ok=a>22||(a===22&&(b>12||(b===12&&c>=0)));if(!ok){console.error(`Node ${process.versions.node} is too old. Require >= 22.12.0`);process.exit(1)}'
 
 # ---------------------------------------------------------------------------
 # Build cache: skip if the runtime was already built for the pinned version.

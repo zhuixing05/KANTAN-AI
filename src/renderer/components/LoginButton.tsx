@@ -248,7 +248,7 @@ const LoginButton: React.FC = () => {
     if (isLoggedIn) {
       setShowMenu(!showMenu);
     } else {
-      await authService.login();
+      await window.electron.shell.openExternal('https://aikantan.com/');
     }
   };
 

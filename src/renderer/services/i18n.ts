@@ -16,7 +16,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     hide: '隐藏',
     add: '添加',
     user: '用户',
-    login: '登录',
+    login: '获取API',
     inDevelopment: '正在开发中',
     
     // 设置
@@ -1205,7 +1205,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     hide: 'Hide',
     add: 'Add',
     user: 'User',
-    login: 'Login',
+    login: 'Get API',
     inDevelopment: 'In development',
     
     // Settings

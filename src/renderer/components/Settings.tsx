@@ -166,10 +166,10 @@ const normalizeBaseUrl = (baseUrl: string): string => baseUrl.trim().replace(/\/
 const normalizeApiFormat = (value: unknown): 'anthropic' | 'openai' => (
   value === 'openai' ? 'openai' : 'anthropic'
 );
-const ABOUT_CONTACT_EMAIL = 'kantanai.project@rd.netease.com';
-const ABOUT_USER_MANUAL_URL = 'https://kantanai.youdao.com/#/docs/kantanai_user_manual';
-const ABOUT_USER_COMMUNITY_URL = 'https://kantanai.youdao.com/#/about';
-const ABOUT_SERVICE_TERMS_URL = 'https://c.youdao.com/dict/hardware/kantanai/kantanai_service.html';
+const ABOUT_CONTACT_EMAIL = 'support@kantan-ai.com';
+const ABOUT_USER_MANUAL_URL = 'https://docs.kantan-ai.com';
+const ABOUT_USER_COMMUNITY_URL = 'https://community.kantan-ai.com';
+const ABOUT_SERVICE_TERMS_URL = 'https://kantan-ai.com/terms';
 
 // MiniMax Portal OAuth constants
 const MINIMAX_OAUTH_CLIENT_ID = '78257093-7e40-4613-99e0-527b14b39113';
