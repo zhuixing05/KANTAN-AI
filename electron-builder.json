@@ -172,6 +172,10 @@
     ],
     "icon": "build/icons/png",
     "category": "Utility",
+    "executableArgs": [
+      "--no-sandbox",
+      "--disable-dev-shm-usage"
+    ],
     "extraResources": [
       {
         "from": "SKILLs",
