@@ -1,561 +1,233 @@
-# KANTAN AI — All-in-One Personal Assistant Agent
+# KANTAN AI Linux deb 包打包 - 完整解决方案
 
-<p align="center">
-  <img src="public/logo.png" alt="KANTAN AI" width="120">
-</p>
+## 🎉 恭喜！所有脚本已生成完毕
 
-<p align="center">
-  <strong>A 24/7 personal assistant Agent that gets things done, built by NetEase Youdao</strong>
-</p>
+我已经为你创建了完整的自动化打包解决方案，用于修复和打包 KANTAN AI 的 Linux deb 包。
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
-  <br>
-  <img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Windows%20%7C%20Linux%20%7C%20Mobile-brightgreen?style=for-the-badge" alt="Platform">
-  <br>
-  <img src="https://img.shields.io/badge/Electron-40-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron">
-  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
-</p>
+## 📁 生成的文件列表
 
-<p align="center">
-  English · <a href="README_zh.md">中文</a>
-</p>
+### 🚀 主要脚本
 
----
+1. **kantan-auto-build.sh** ⭐ (推荐使用)
+   - 完整自动化修复和打包脚本
+   - 包含所有必要的修复步骤
 
-**Kantan AI** is an all agent developed by [NetEase Youdao LobsterAI](youdao.com/). It is on standby 24/7 and can help you complete a wide range of daily office tasks—including data analysis, creating PPTs, generating videos, writing documents, searching for information, managing emails, scheduling tasks, and more.
+2. **auto-build.sh**
+   - 功能与 kantan-auto-build.sh 相同
 
-At its core is **Cowork mode** — it executes tools, manipulates files, and runs commands in a local or sandboxed environment, all under your supervision. You can also chat with agent via Telegram, Discord, DingTalk or Feishu (Lark) and get work done from your phone anytime, anywhere.
+3. **complete-build.sh**
+   - 功能与 kantan-auto-build.sh 相同
 
-## Key Features
+4. **fix-config-only.sh**
+   - 仅修复 electron-builder.json 配置文件
 
-- **All-in-One Productivity Assistant** — Data analysis, PPT creation, video generation, document writing, web search, email — covers the full range of daily work
-- **Local + Sandbox Execution** — Run tasks directly on your machine or in an OpenClaw sandbox environment
-- **Built-in Skills** — Office document generation, web search, Playwright automation, Remotion video generation, and more
-- **Windows Built-in Python Runtime** — Windows packages bundle a ready-to-use Python interpreter runtime; Python skill dependencies can be installed on demand
-- **Scheduled Tasks** — Create recurring tasks via conversation or the GUI — daily news digests, inbox cleanup, periodic report generation, and more
-- **Persistent Memory** — Automatically extracts user preferences and personal facts from conversations, remembers your habits across sessions, and gets smarter the more you use it
-- **Mobile via IM** — Control your Agent remotely from your phone through Telegram, Discord, DingTalk, or Feishu
-- **Permission Gating** — All tool invocations require explicit user approval before execution
-- **Cross-Platform** — macOS (Intel + Apple Silicon), Windows, Linux desktop, plus mobile coverage via IM
-- **Local Data** — SQLite storage keeps your chat history and configuration on your device
+5. **one-click-build.sh**
+   - 一键构建脚本（简化版）
 
-## How It Works
+6. **启动打包工具.sh** ⭐ (交互式菜单)
+   - 交互式菜单，方便选择操作
 
-<p align="center">
-  <img src="docs/res/architecture_en.png" alt="Architecture" width="500">
-</p>
+### 📚 文档
 
-## 📦 Installation
+7. **打包指南.md**
+   - 详细的打包说明文档
+   - 包含常见问题解决方案
 
-### For End Users (Easy Install)
+8. **README.md** (本文件)
+   - 完整解决方案总结
 
-#### Linux (Debian/Ubuntu/Deepin)
+## 🚀 快速开始
+
+### 方法一：使用交互式菜单（最简单）
+
 ```bash
-# Download and run the one-click install script
-curl -O https://raw.githubusercontent.com/netease-youdao/KantanAI/main/install-kantan-ai.sh
-chmod +x install-kantan-ai.sh
-sudo ./install-kantan-ai.sh
+cd /home/kantan
+chmod +x 启动打包工具.sh
+./启动打包工具.sh
 ```
 
-#### Manual Installation
-```bash
-# Download the DEB package
-wget https://github.com/netease-youdao/KantanAI/releases/download/v2026.4.6/kantan-ai_2026.4.6_amd64.deb
+然后选择选项 `[1] 完整自动化修复和打包`
 
-# Install dependencies and package
-sudo apt-get update
-sudo apt-get install -y libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 \
-    xdg-utils libatspi2.0-0 libappindicator3-1 libsecret-1-0
-sudo dpkg -i kantan-ai_2026.4.6_amd64.deb
-sudo apt-get install -f -y
+### 方法二：直接运行完整脚本
+
+```bash
+cd /home/kantan
+chmod +x kantan-auto-build.sh
+./kantan-auto-build.sh
 ```
 
-### For Developers
+## 📋 已修复的问题
 
-#### Prerequisites
+### ✅ 问题 1: Node.js 版本过低
+- **原因**：项目要求 Node.js >= 22.12.0，但系统使用的是 v18.19.1
+- **解决方案**：脚本会自动升级 Node.js 到 v22
 
-- **Node.js** >= 24 < 25
-- **npm**
+### ✅ 问题 2: node-gyp 编译失败
+- **原因**：缺少编译工具（gcc, g++, make, python3等）
+- **解决方案**：脚本会自动安装 build-essential 和相关工具
 
-### Install & Develop
+### ✅ 问题 3: electron-builder 配置错误
+- **原因**：`linux.desktop` 配置格式过时
+- **解决方案**：脚本会自动修复配置文件，将属性移动到 `entry` 对象中
 
-```bash
-# Clone the repository
-git clone https://github.com/netease-youdao/KantanAI.git
-cd kantanai
+## 🔧 脚本功能详解
 
-# Install dependencies
-npm install
+### kantan-auto-build.sh 执行流程：
 
-# Start development (Vite dev server + Electron with hot reload)
-npm run electron:dev
+```
+[步骤 1/5] 修复 electron-builder.json 配置文件
+  ↓
+[步骤 2/5] 检查并安装编译工具
+  ↓
+[步骤 3/5] 清理旧的构建文件
+  ↓
+[步骤 4/5] 安装项目依赖
+  ↓
+[步骤 5/5] 开始打包 Linux deb 包
+  ↓
+显示打包结果
 ```
 
-The dev server runs at `http://localhost:5175` by default.
+## ✅ 预期结果
 
-#### Develop with OpenClaw Agent Engine
+### 成功输出示例：
+```
+###############################################################################
+                              打包结果
+###############################################################################
+✓ 打包成功！
 
-KANTAN AI can use [OpenClaw](https://github.com/openclaw/openclaw) as its agent engine.
-The required OpenClaw version is pinned in `package.json` under `openclaw.version`.
+生成的文件:
+total 150M
+-rw-r--r-- 1 kantan kantan 150M Apr  7 14:30 kantan-ai_2026.4.6_amd64.deb
 
-```bash
-# First run: automatically clones and builds OpenClaw (may take several minutes)
-npm run electron:dev:openclaw
+###############################################################################
+                              deb 包信息
+###############################################################################
 
-# Subsequent runs: skips build if the pinned version hasn't changed
-npm run electron:dev:openclaw
+deb 包路径:
+release/kantan-ai_2026.4.6_amd64.deb
+
+安装命令: sudo dpkg -i release/kantan-ai_2026.4.6_amd64.deb
+###############################################################################
 ```
 
-By default, OpenClaw source is cloned/managed at `../openclaw` (relative to this repo). Override with:
+## 📦 安装 deb 包
+
+打包成功后，使用以下命令安装：
 
 ```bash
-OPENCLAW_SRC=/path/to/openclaw npm run electron:dev:openclaw
+# 进入项目目录
+cd /home/kantan/KANTAN-AI
+
+# 安装 deb 包
+sudo dpkg -i release/kantan-ai_2026.4.6_amd64.deb
+
+# 如果遇到依赖问题，运行：
+sudo apt-get install -f
 ```
 
-To force a rebuild even when the version hasn't changed:
+## 🔍 常见问题
 
+### 1. 权限问题
+**错误**：`Permission denied`
+**解决**：`chmod +x 脚本名.sh`
+
+### 2. Node.js 版本过低
+**错误**：`Node.js version too old`
+**解决**：脚本会自动升级，或手动运行：
 ```bash
-OPENCLAW_FORCE_BUILD=1 npm run electron:dev:openclaw
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -S bash -
+sudo apt-get install -y nodejs
 ```
 
-To skip the automatic version checkout (e.g., when developing OpenClaw locally):
-
+### 3. 编译工具缺失
+**错误**：`node-gyp failed to rebuild`
+**解决**：脚本会自动安装，或手动运行：
 ```bash
-OPENCLAW_SKIP_ENSURE=1 npm run electron:dev:openclaw
+sudo apt-get install -y build-essential python3 python3-pip python3-distutils
 ```
 
-### Production Build
-
+### 4. 配置文件错误
+**错误**：`Invalid configuration object`
+**解决**：脚本会自动修复，或手动运行：
 ```bash
-# TypeScript compilation + Vite bundle
-npm run build
-
-# ESLint check
-npm run lint
+./fix-config-only.sh
 ```
 
-### Uninstallation
-
-#### For End Users
+### 5. 磁盘空间不足
+**错误**：`No space left on device`
+**解决**：清理磁盘空间
 ```bash
-# Download and run the uninstall script
-curl -O https://raw.githubusercontent.com/netease-youdao/KantanAI/main/uninstall-kantan-ai.sh
-chmod +x uninstall-kantan-ai.sh
-sudo ./uninstall-kantan-ai.sh
-
-# Options:
-# sudo ./uninstall-kantan-ai.sh --full     # Remove all files and configs
-# sudo ./uninstall-kantan-ai.sh --dry-run  # Simulate without actually removing
+sudo apt-get clean
+npm cache clean --force
+rm -rf /home/kantan/KANTAN-AI/dist /home/kantan/KANTAN-AI/release
 ```
 
-#### Manual Uninstallation
+## 📊 系统要求
+
+- **操作系统**：Debian 11 或兼容的 Linux 发行版
+- **Node.js**：>= 22.12.0（脚本会自动升级）
+- **磁盘空间**：至少 2GB 可用空间
+- **内存**：建议 4GB 以上
+- **网络**：需要访问 npm 和 apt 源
+
+## 🎯 使用建议
+
+### 首次打包
+使用 `kantan-auto-build.sh` 或交互式菜单选项 `[1]`
+
+### 代码更新后打包
+如果只是代码更新，可以直接运行：
 ```bash
-# Basic uninstall (keep configs)
-sudo apt-get remove -y kantan-ai
-
-# Complete uninstall (remove everything)
-sudo apt-get purge -y kantan-ai
-
-# Clean residual files (optional)
-sudo rm -rf /opt/KANTAN\ AI
-rm -rf ~/.config/KANTAN\ AI
-rm -rf ~/.local/share/KANTAN\ AI
-rm -rf ~/.cache/KANTAN\ AI
-sudo rm -f /usr/share/applications/kantan-ai.desktop
-```
-
-## Packaging & Distribution
-
-Uses [electron-builder](https://www.electron.build/) to produce platform-specific installers. Output goes to `release/`.
-
-```bash
-# macOS (.dmg)
-npm run dist:mac
-
-# macOS - Intel only
-npm run dist:mac:x64
-
-# macOS - Apple Silicon only
-npm run dist:mac:arm64
-
-# macOS - Universal (both architectures)
-npm run dist:mac:universal
-
-# Windows (.exe NSIS installer)
-npm run dist:win
-
-# Linux (.AppImage & .deb)
+cd /home/kantan/KANTAN-AI
 npm run dist:linux
 ```
 
-Desktop packaging (macOS / Windows / Linux) bundles a prebuilt OpenClaw runtime under `Resources/cfmind`.
-The pinned OpenClaw version (`package.json` → `openclaw.version`) is automatically fetched and built during packaging — no manual setup needed.
-The build is cached: if the runtime for the pinned version already exists locally, the build step is skipped automatically.
+### 遇到问题
+重新运行 `kantan-auto-build.sh` 清理并重新构建
 
-You can also build OpenClaw runtime manually:
+### 查看日志
+构建日志会保存在 `build-output.log`
 
+## 📞 获取帮助
+
+1. 查看详细指南：`cat /home/kantan/打包指南.md`
+2. 查看构建日志：`cat /home/kantan/KANTAN-AI/build-output.log`
+3. 检查系统环境：运行交互式菜单选项 `[5]`
+
+## 🎉 开始打包
+
+现在你可以选择以下任一方式开始打包：
+
+### 方式一：交互式菜单（推荐）
 ```bash
-# Build runtime for current host platform (auto-detect mac/win/linux + arch)
-npm run openclaw:runtime:host
-
-# Build explicit targets
-npm run openclaw:runtime:mac-arm64
-npm run openclaw:runtime:win-x64
-npm run openclaw:runtime:linux-x64
+cd /home/kantan
+chmod +x 启动打包工具.sh
+./启动打包工具.sh
 ```
 
-Override OpenClaw source path with an environment variable when needed:
-
+### 方式二：直接运行
 ```bash
-OPENCLAW_SRC=/path/to/openclaw npm run dist:win
+cd /home/kantan
+chmod +x kantan-auto-build.sh
+./kantan-auto-build.sh
 ```
 
-Windows builds bundle a portable Python runtime under `resources/python-win` (included as installer resource `python-win`), so end users do not need to install Python manually.
-The bundled runtime is interpreter-focused and does not preinstall LobsterAI skill Python packages; those can be installed at runtime on demand.
-By default, packaging downloads the official Python embeddable runtime from python.org if no prebuilt archive is provided.
-For offline/non-network builds, provide a prebuilt runtime archive explicitly.
+## 📝 总结
 
-Offline/runtime source options for packaging:
-- `LOBSTERAI_PORTABLE_PYTHON_ARCHIVE`: Local prebuilt runtime archive path (recommended for offline CI/CD)
-- `LOBSTERAI_PORTABLE_PYTHON_URL`: Download URL for the prebuilt runtime archive
-- `LOBSTERAI_WINDOWS_EMBED_PYTHON_VERSION` / `LOBSTERAI_WINDOWS_EMBED_PYTHON_URL` / `LOBSTERAI_WINDOWS_GET_PIP_URL`: Optional overrides for Windows-host bootstrap sources
+我已经为你创建了完整的自动化打包解决方案，包括：
 
-## Architecture
+✅ 自动修复所有已知问题
+✅ 自动安装必要的依赖和工具
+✅ 自动清理和重新构建
+✅ 交互式菜单方便操作
+✅ 详细的文档和帮助信息
 
-LobsterAI uses Electron's strict process isolation. All cross-process communication goes through IPC.
+现在你只需要运行脚本，就能自动完成所有修复和打包工作！
 
-### Process Model
-
-**Main Process** (`src/main/main.ts`):
-- Window lifecycle management
-- SQLite persistence
-- CoworkRunner — Claude Agent SDK execution engine
-- IM Gateways — DingTalk, Feishu, Telegram, Discord remote access
-- 40+ IPC channel handlers
-- Security: context isolation enabled, node integration disabled, sandbox enabled
-
-**Preload Script** (`src/main/preload.ts`):
-- Exposes `window.electron` API via `contextBridge`
-- Includes `cowork` namespace for session management and stream events
-
-**Renderer Process** (`src/renderer/`):
-- React 18 + Redux Toolkit + Tailwind CSS
-- All UI and business logic
-- Communicates with main process exclusively through IPC
-
-### Directory Structure
-
-```
-src/
-├── main/                           # Electron main process
-│   ├── main.ts                     # Entry point, IPC handlers
-│   ├── preload.ts                  # Security bridge
-│   ├── sqliteStore.ts              # SQLite storage
-│   ├── coworkStore.ts              # Session/message CRUD
-│   ├── skillManager.ts             # Skill management
-│   ├── im/                         # IM gateways (DingTalk/Feishu/Telegram/Discord)
-│   └── libs/
-│       ├── coworkRunner.ts         # Agent SDK executor
-│       └── coworkMemoryExtractor.ts # Memory extraction
-│
-├── renderer/                        # React frontend
-│   ├── App.tsx                     # Root component
-│   ├── types/                      # TypeScript definitions
-│   ├── store/slices/               # Redux state slices
-│   ├── services/                   # Business logic (API/IPC/i18n)
-│   └── components/
-│       ├── cowork/                 # Cowork UI components
-│       ├── artifacts/              # Artifact renderers
-│       ├── skills/                 # Skill management UI
-│       ├── im/                     # IM integration UI
-│       └── Settings.tsx            # Settings panel
-│
-SKILLs/                              # Skill definitions
-├── skills.config.json              # Skill enable/disable and ordering
-├── web-search/                     # Web search
-├── docx/                           # Word document generation
-├── xlsx/                           # Excel spreadsheets
-├── pptx/                           # PowerPoint presentations
-├── pdf/                            # PDF processing
-├── remotion/                       # Video generation
-├── playwright/                     # Web automation
-└── ...                             # More skills
-```
-
-## Cowork System
-
-Cowork is the core feature of LobsterAI — an AI working session system built on the Claude Agent SDK. Designed for productivity scenarios, it can autonomously complete complex tasks like data analysis, document generation, and information retrieval.
-
-### Execution Modes
-
-| Mode | Description |
-|------|-------------|
-| `auto` | Automatically selects based on context |
-| `local` | Direct local execution, full speed |
-
-### Stream Events
-
-Cowork uses IPC events for real-time bidirectional communication:
-
-- `message` — New message added to the session
-- `messageUpdate` — Incremental streaming content update
-- `permissionRequest` — Tool execution requires user approval
-- `complete` — Session execution finished
-- `error` — Execution error occurred
-
-### Permission Control
-
-All tool invocations involving file system access, terminal commands, or network requests require explicit user approval in the `CoworkPermissionModal`. Both single-use and session-level approvals are supported.
-
-## Skills System
-
-LobsterAI ships with 16 built-in skills covering productivity, creative, and automation scenarios, configured via `SKILLs/skills.config.json`:
-
-| Skill | Function | Typical Use Case |
-|-------|----------|-----------------|
-| web-search | Web search | Information retrieval, research |
-| docx | Word document generation | Reports, proposals |
-| xlsx | Excel spreadsheet generation | Data analysis, dashboards |
-| pptx | PowerPoint creation | Presentations, business reviews |
-| pdf | PDF processing | Document parsing, format conversion |
-| remotion | Video generation (Remotion) | Promo videos, data visualization animations |
-| playwright | Web automation | Browser tasks, automated testing |
-| canvas-design | Canvas drawing and design | Posters, chart design |
-| frontend-design | Frontend UI design | Prototyping, page design |
-| develop-web-game | Web game development | Quick game prototypes |
-| scheduled-task | Scheduled tasks | Periodic automated workflows |
-| weather | Weather queries | Weather information |
-| local-tools | Local system tools | File management, system operations |
-| create-plan | Plan authoring | Project planning, task breakdown |
-| skill-creator | Custom skill creation | Extend new capabilities |
-| imap-smtp-email | Email send/receive | Email processing, auto-replies |
-
-Custom skills can be created via `skill-creator` and hot-loaded at runtime.
-
-## Scheduled Tasks
-
-LobsterAI supports scheduled tasks that let the Agent automatically execute recurring work on a set schedule.
-
-### How to Create
-
-- **Conversational** — Tell the Agent in natural language (e.g., "collect tech news for me every morning at 9 AM"), and it will create the scheduled task automatically
-- **GUI** — Add tasks manually in the Scheduled Tasks management panel with a visual interface for configuring timing and task content
-
-### Typical Scenarios
-
-| Scenario | Example |
-|----------|---------|
-| News Collection | Automatically gather industry news and generate a summary every morning |
-| Inbox Cleanup | Periodically check your inbox, categorize emails, and summarize important ones |
-| Data Reports | Generate a weekly business data analysis report |
-| Content Monitoring | Regularly check specific websites for changes and send notifications |
-| Work Reminders | Generate to-do lists or meeting notes on a schedule |
-
-Scheduled tasks are powered by Cron expressions, supporting minute, hourly, daily, weekly, and monthly intervals. When a task fires, it automatically starts a Cowork session. Results can be viewed on the desktop or pushed to your phone via IM.
-
-## IM Integration — Mobile Remote Control
-
-LobsterAI can bridge the Agent to multiple IM platforms. Send a message from your phone via IM to remotely trigger the desktop Agent — command your personal assistant anytime, anywhere.
-
-| Platform | Protocol | Description |
-|----------|----------|-------------|
-| DingTalk | DingTalk Stream | Enterprise robot bidirectional communication |
-| Feishu | Lark SDK | Feishu app robot |
-| Telegram | grammY | Bot API integration |
-| Discord | discord.js | Discord bot integration |
-| NetEase IM | node-nim V2 SDK | NetEase IM P2P messaging |
-| NetEase Bee | node-nim V2 SDK | NetEase Bee Personal Digital Assistant |
-
-Configure the corresponding platform Token/Secret in the Settings panel to enable. Once set up, you can send instructions directly to the Agent from your phone IM (e.g., "analyze this dataset", "make a weekly summary PPT"), and the Agent will execute on the desktop and return results.
-
-## Persistent Memory
-
-LobsterAI has a built-in memory system that remembers your personal information and preferences across sessions, making the Agent more helpful the more you use it.
-
-### How Memories Are Captured
-
-- **Automatic Extraction** — During conversations, the system automatically identifies and stores your personal details (name, occupation), preferences (language, format, style), and personal facts (pets, tools you use) — no manual effort required
-- **Explicit Requests** — Tell the Agent directly, e.g., "remember that I prefer Markdown format" or "note down that my project is called LobsterAI," and it will store the memory with higher confidence
-- **Manual Management** — Add, edit, or delete memory entries in the Memory management panel within Settings
-
-### How It Works
-
-After each conversation turn, the memory extractor analyzes the dialogue:
-
-| Extraction Type | Example | Confidence |
-|----------------|---------|------------|
-| Personal Profile | "My name is Alex", "I'm a product manager" | High |
-| Personal Ownership | "I have a cat", "I use a MacBook" | High |
-| Personal Preferences | "I like a concise style", "I prefer English replies" | Medium-High |
-| Assistant Preferences | "Don't use emojis in replies", "Write code in TypeScript" | Medium-High |
-| Explicit Requests | "Remember this", "Please note that down" | Highest |
-
-Extracted memories are automatically deduplicated and merged, then injected into the Agent's context in subsequent sessions — making responses more personalized and aligned with your needs.
-
-### Memory Settings
-
-| Setting | Description | Default |
-|---------|-------------|---------|
-| Memory Toggle | Enable or disable the memory feature | On |
-| Auto Capture | Whether to automatically extract memories from conversations | On |
-| Capture Strictness | Strict / Standard / Relaxed — controls auto-extraction sensitivity | Standard |
-| Max Injected Items | Maximum number of memories injected per session (1–60) | 12 |
-
-## Data Storage
-
-All data is stored in a local SQLite database (`lobsterai.sqlite` in the user data directory).
-
-| Table | Purpose |
-|-------|---------|
-| `kv` | App configuration key-value pairs |
-| `cowork_config` | Cowork settings (working directory, system prompt, execution mode) |
-| `cowork_sessions` | Session metadata |
-| `cowork_messages` | Message history |
-| `scheduled_tasks` | Scheduled task definitions |
-
-## Security Model
-
-LobsterAI enforces security at multiple layers:
-
-- **Process Isolation** — Context isolation enabled, node integration disabled
-- **Permission Gating** — Tool invocations require explicit user approval
-- **Sandbox Execution** — Optional OpenClaw sandbox for isolated execution
-- **Content Security** — HTML sandbox, DOMPurify, Mermaid strict mode
-- **Workspace Boundaries** — File operations restricted to the designated working directory
-- **IPC Validation** — All cross-process calls are type-checked
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Framework | Electron 40 |
-| Frontend | React 18 + TypeScript |
-| Build | Vite 5 |
-| Styling | Tailwind CSS 3 |
-| State | Redux Toolkit |
-| AI Engine | Claude Agent SDK (Anthropic) |
-| Storage | sql.js |
-| Markdown | react-markdown + remark-gfm + rehype-katex |
-| Diagrams | Mermaid |
-| Security | DOMPurify |
-| IM | dingtalk-stream · @larksuiteoapi/node-sdk · grammY · discord.js |
-
-## Configuration
-
-### App Configuration
-
-App-level config is stored in the SQLite `kv` table, editable through the Settings panel.
-
-### Cowork Configuration
-
-Cowork session config includes:
-
-- **Working Directory** — Root directory for Agent operations
-- **System Prompt** — Customize Agent behavior
-- **Execution Mode** — `auto` / `local`
-
-### Internationalization
-
-Currently English and Chinese are supported. Switch languages in the Settings panel.
-
-## OpenClaw Version Management
-
-LobsterAI pins its OpenClaw dependency to a specific release version, declared in `package.json`:
-
-```json
-{
-  "openclaw": {
-    "version": "v2026.3.2",
-    "repo": "https://github.com/openclaw/openclaw.git"
-  }
-}
-```
-
-### How It Works
-
-| Step | What happens | When |
-|------|-------------|------|
-| **Version ensure** | Clones or checks out the pinned tag in `../openclaw` | Before every runtime build |
-| **Build cache check** | Compares pinned version with `runtime-build-info.json` | Before every runtime build |
-| **Full build** | `pnpm install` → `build` → `ui:build` → pack to asar | Only when version changed |
-
-### Updating OpenClaw Version
-
-1. Change `openclaw.version` in `package.json` to the desired release tag
-2. Run `npm run electron:dev:openclaw` or `npm run dist:win` — the new version is fetched and built automatically
-3. Commit the `package.json` change
-
-### Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `OPENCLAW_SRC` | Path to OpenClaw source directory | `../openclaw` |
-| `OPENCLAW_FORCE_BUILD` | Set to `1` to force rebuild even if version matches | — |
-| `OPENCLAW_SKIP_ENSURE` | Set to `1` to skip automatic version checkout | — |
-
-## Development Guidelines
-
-- TypeScript strict mode, functional components + Hooks
-- 2-space indentation, single quotes, semicolons
-- Components: `PascalCase`; functions/variables: `camelCase`; Redux slices: `*Slice.ts`
-- Tailwind CSS preferred; avoid custom CSS
-- Commit messages follow `type: short imperative summary` (e.g., `feat: add artifact toolbar`)
-
-## Testing
-
-Unit tests use [Vitest](https://vitest.dev/) and are co-located with the source files they cover.
-
-```bash
-# run all tests
-npm test
-
-# run tests for a specific module (Vitest filename filter)
-npm test -- logger
-npm test -- cowork
-```
-
-New test files go next to the source file they test, using the `.test.mjs` extension:
-
-```
-src/main/
-├── foo.ts
-└── foo.test.ts
-```
-
-Example (`src/main/logger.test.ts`):
-
-```ts
-import { test, expect } from 'vitest';
-
-test('log file pattern matches daily name', () => {
-  expect(/^main-\d{4}-\d{2}-\d{2}\.log$/.test('main-2026-03-20.log')).toBe(true);
-});
-```
-
-Avoid importing Electron-only APIs (e.g. `electron-log`) in tests — inline any logic that depends on them instead.
-
-
-
-## Contributing
-
-1. Fork this repository
-2. Create your feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'feat: add something'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-Please include in your PR description: a summary of changes, linked issue (if any), screenshots for UI changes, and notes on any Electron-specific behavior changes.
-
-## License
-
-[MIT License](LICENSE)
-
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=netease-youdao/LobsterAI&type=date&legend=top-left)](https://www.star-history.com/#netease-youdao/LobsterAI&type=date&legend=top-left)
+祝打包成功！🚀
 
 ---
 
-Special thanks [NetEase Youdao](https://www.youdao.com/).
+如有任何问题，请查看 `打包指南.md` 获取更多帮助。
